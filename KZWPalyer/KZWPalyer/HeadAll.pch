@@ -1,0 +1,158 @@
+//
+//  HeadAll.pch
+//  Uhut
+//
+//  Created by uhut on 15/3/16.
+//  Copyright (c) 2015年 uhut. All rights reserved.
+//
+
+#ifndef Uhut_HeadAll_pch
+#define Uhut_HeadAll_pch
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+#ifdef __OBJC__
+
+#ifdef DEBUG
+#define NSLog(...) NSLog(__VA_ARGS__)
+#define debugMethod() NSLog(@"%s", __func__)
+#else
+#define NSLog(...)
+#define debugMethod()
+#endif
+
+
+
+
+//#import"BaseViewController.h"
+//#import"Masonry.h"
+//#import"ToolClass.h"
+//#import "MyRequest.h"
+//#import "MyURLConnection.h"
+//#import "AFNParme.h"
+//#import "APPInterface.h"
+//#import "AFNetworking.h"
+//#import "MBProgressHUD.h"
+//#import "UIImageView+WebCache.h"
+//#import "UIButton+WebCache.h"
+//
+//#import "CustomActionSheetView.h"
+//#import "UIView+Extension.h"
+
+////#import "MobClick.h"
+//#import <UMMobClick/MobClick.h>
+//
+//#import "ErrorView.h"
+////关于网络请求状态判断的基类
+//#import "RequestState.h"
+//#import "AFNetworking.h"
+//#import "AFHTTPSessionManager+kzw.h"
+//
+//
+////#warning test
+//#import "TCAdapterHeader.h"
+//#import "KLiveHead.h"
+////点播
+//#import <TCPlayerSDK/TCPlayerSDK.h>
+//#import "TCPlayItem.h"
+
+
+
+//替换类名
+//typedef   AFHTTPSessionManager AFHTTPRequestOperationManager ;
+
+#define ISIOS8 ([[[UIDevice currentDevice] systemVersion] doubleValue]>=8.0)
+#define ISIOS7 ([[[UIDevice currentDevice] systemVersion] doubleValue]==7.0)
+
+#define Token [[NSUserDefaults standardUserDefaults] objectForKey:@"token"]
+#define s_width [UIScreen mainScreen].bounds.size.width
+#define s_height [UIScreen mainScreen].bounds.size.height
+#define imageFile(imageName) [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:((s_width>=414)?[NSString stringWithFormat:@"%@@3x",imageName]:[NSString stringWithFormat:@"%@@2x",imageName]) ofType:@"png"]]
+
+#define imageContentJpg(imageName) [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:imageName ofType:@"jpg"]]
+#define imageContentPng(imageName) [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:imageName ofType:@"png"]]
+
+//字号常用到的宏
+#define UHMiddeleFont 15
+#define UHSmallFont   13
+#define UHLargeFont   17
+
+
+
+//英文，数字自定义的字体
+#define Dealfut_Font(s) [UIFont fontWithName:@"DIN Pro" size:(s)]
+//等级需要的字体
+#define LVNumber_Font(s) [UIFont fontWithName:@"Cataneo BT" size:(s)]//
+#define  Dealfut_URL  @"http://www.uhut.com"
+#define APPLE_ID @"1000548278"
+#define YouMengKEY @"562de59f67e58e4945000bc3"  //5525f9cffd98c5aec7000daa (测试环境)
+#define JPUSHKEY @"b7b89dc8537bfd38ada30007"
+
+
+#define EnvironmentalScience  1  // 1 @"On-line"  //2 @"off-line"
+
+#if EnvironmentalScience ==1   //线上
+#define RongYunAPPKey @"e0x9wycfxnmzq"  
+#define kSdkAppId       @"1400010510"
+//获取httpIP TCPIp等
+#define SeverceURL  @"http://api.uhut.com/server/getMap" 
+
+#else
+//线下
+#define RongYunAPPKey @"82hegw5uh9zqx"
+// 直播 以及IMSDK相关的配置
+#define kSdkAppId       @"1400013501"
+//获取httpIP TCPIp等
+#define SeverceURL  @"http://192.168.0.202:9003/server/getMap"
+#endif
+
+
+
+#ifndef kSdkAccountType
+//用户的账号类型 这个应该不能定义成宏吧
+#define kSdkAccountType @"5601"  //demo @"884"   ／／线下  @"5601"
+#endif
+
+
+const static NSString *GaoDeAPIKey =@"4514467725f463a191a95ce07d7c5346";//@"c63e8f640966947b3f43d8698c803f6c";
+#define RGBA(R,G,B,A)  [UIColor colorWithRed:(R/255.0) green:(G/255.0) blue:(B/255.0) alpha:A]
+//  headportrait_replace 这是一张正方形图片
+#define DealfutImage  imageFile(@"default_loading")
+// 宏定义 适用于长方形的默认图，
+#define DealfutImageRectangle imageContentPng(@"default_loadingRectangle") // [DealfutImage resizableImageWithCapInsets:UIEdgeInsetsMake(5, 5, 5, 5) resizingMode:UIImageResizingModeStretch]
+
+
+
+#define IconDefaultImage imageContentPng(@"circleDefaultIcon")
+
+
+#define Color_Main_99CC33 [UIColor colorWithRed:(153/255.0) green:(204/255.0) blue:(51/255.0) alpha:1]
+#define Color_TitleOrContent_000000 [UIColor colorWithRed:(0/255.0) green:(0/255.0) blue:(0/255.0) alpha:1]
+#define Color_GrayLine_ededf3 [UIColor colorWithRed:(237/255.0) green:(237/255.0) blue:(243/255.0) alpha:1]
+#define Color_Gray_333333 [UIColor colorWithRed:(53/255.0) green:(53/255.0) blue:(53/255.0) alpha:1]
+#define Color_Gray_666666 [UIColor colorWithRed:(103/255.0) green:(103/255.0) blue:(103/255.0) alpha:1]
+#define Color_Gray_999999 [UIColor colorWithRed:(153/255.0) green:(153/255.0) blue:(153/255.0) alpha:1]
+
+
+#undef WJ_RELEASE_SAFELY
+#define WJ_RELEASE_SAFELY(__REF) \
+{\
+if (nil != (__REF)) \
+{\
+__REF = nil;\
+}\
+}
+
+//view的安全释放
+#undef WJVIEW_RELEASE_SAFELY
+#define WJVIEW_RELEASE_SAFELY(__REF) \
+{\
+if (nil != (__REF))\
+{\
+[__REF removeFromSuperview];\
+__REF = nil;\
+}\
+}
+
+#endif
+#endif
